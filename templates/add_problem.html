@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="myform">
+	<h1>Add problem</h1>
+	<form action="" method="post" enctype="multipart/form-data">
+		{{ form.hidden_tag() }}
+		{{ form.csrf_token }}
+		<p>
+			{{ form.name.label }}<br>
+			{{ form.name(class="form-control") }}<br>
+			{% for error in form.name.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.time_limit.label }}<br>
+			{{ form.time_limit(class="form-control") }}<br>
+			{% for error in form.time_limit.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.file_in.label }}<br>
+			{{ form.file_in(class="form-control") }}<br>
+			{% for error in form.file_in.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.file_out.label }}<br>
+			{{ form.file_out(class="form-control") }}<br>
+			{% for error in form.file_out.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.task_file.label }}<br>
+			{{ form.task_file(class="form-group") }}<br>
+			{% for error in form.task_file.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.tests_file.label }}<br>
+			{{ form.tests_file(class="form-group") }}<br>
+			{% for error in form.tests_file.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.answers_file.label }}<br>
+			{{ form.answers_file(class="form-group") }}<br>
+			{% for error in form.answers_file.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+		<p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
+	</form>
+</div>
+{% endblock %}

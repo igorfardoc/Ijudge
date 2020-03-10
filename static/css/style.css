@@ -1,0 +1,43 @@
+.myform {
+	text-align: center;
+	align: center;
+	max-width: 400px;
+	margin-left: auto;
+    margin-right: auto;
+}
+div.center {
+	text-align: center;
+	align: center;
+}
+div.contests {
+	text-align: center;
+	align: center;
+	max-width: 800px;
+	margin-left: auto;
+    margin-right: auto;
+}
+a.fulla {
+	color: white;
+	position: absolute;
+	left: 0; right: 0;
+	text-decoration: none;
+}
+td.fulltd {
+	position: relative;
+}
+.myform1 {
+	text-align: center;
+	align: center;
+	max-width: 400px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 10px;
+}
+.myform2 {
+	text-align: center;
+	align: center;
+	max-width: 800px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 10px;
+}

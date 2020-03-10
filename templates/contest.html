@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="myform2">
+		<h2>Problems</h2>
+		<table class="table table-bordered table-dark">
+			<tr>
+				<th>Problem id</th>
+				<th>Problem name</th>
+				<th>Time limit(sec)</th>
+				<th>File in</th>
+				<th>File out</th>
+			</tr>
+			{% for i in problems %}
+				{% if i[1] %}
+					<tr class="bg-success">
+				{% else %}
+					<tr class="bg-danger">
+				{% endif %}
+					<td class="fulltd"><a class="fulla" href="/contest/{{contest.id}}/problem/{{i[0].id}}">{{i[0].id}}</a></td>
+					<td class="fulltd"><a class="fulla" href="/contest/{{contest.id}}/problem/{{i[0].id}}">{{i[0].name}}</a></td>
+					<td>{{i[0].time_limit}}</td>
+					<td>{{i[0].file_in}}</td>
+					<td>{{i[0].file_out}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		{% if current_user.id == 1 %}
+			<a class="btn btn-danger" style="color: white;" href="/delete/contest/{{contest.id}}">Delete contest</a>
+		{% endif %}
+	</div>
+{% endblock %}

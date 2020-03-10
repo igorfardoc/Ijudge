@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if current_user.is_authenticated %}
+		{% if current_user.id == 1 %}
+			{% if no_one %}
+				<div class="contests">
+					<h2>Contests</h2>
+					<table class="table table-bordered table-dark">
+						<tr>
+							<th>Contest id</th>
+							<th>Contest name</th>
+							<th>Start date</th>
+							<th>Finish date</th>
+						</tr>
+						{% for i in contests_bef %}
+							<tr class="bg-danger">
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.id}}</a></td>
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.name}}</a></td>
+								<td>{{i.start_date}}</td>
+								<td>{{i.finish_date}}</td>
+							</tr>
+						{% endfor %}
+						{% for i in contests %}
+							<tr class="bg-success">
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.id}}</a></td>
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.name}}</a></td>
+								<td>{{i.start_date}}</td>
+								<td>{{i.finish_date}}</td>
+							</tr>
+						{% endfor %}
+						{% for i in contests_after %}
+							<tr class="bg-info">
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.id}}</a></td>
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.name}}</a></td>
+								<td>{{i.start_date}}</td>
+								<td>{{i.finish_date}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+					<div class="myform1">
+						<a class="btn btn-dark" href="/add_problem">Add problem</a>
+						<a class="btn btn-dark" href="/add_contest">Add contest</a>
+					</div>
+				</div>
+			{% else %}
+				<div class="alert alert-dark center" role="alert">
+				  <h2>There are not contests now.</h2>
+				  <a class="btn btn-dark" href="/add_contest">Add contest</a>
+				  <a class="btn btn-dark" href="/add_problem">Add problem</a>
+				</div>
+			{% endif %}
+		{% else %}
+			{% if contests %}
+				<div class="contests">
+					<h2>Contests</h2>
+					<table class="table table-bordered table-dark">
+						<tr>
+							<th>Contest id</th>
+							<th>Contest name</th>
+							<th>Start date</th>
+							<th>Finish date</th>
+						</tr>
+						{% for i in contests %}
+							<tr class="bg-success">
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.id}}</a></td>
+								<td class="fulltd"><a class="fulla" href="/contest/{{i.id}}">{{i.name}}</a></td>
+								<td>{{i.start_date}}</td>
+								<td>{{i.finish_date}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			{% else %}
+				<div class="alert alert-dark center" role="alert">
+				  <h2>There are not open contests now.</h2>
+				  <h2>You can enter later and check again.</h2>
+				</div>
+			{% endif %}
+		{% endif %}
+	{% else %}
+		<div class="alert alert-dark center" role="alert">
+		  <h2>Welcome to Ijudge system. Here you can test your programs.</h2>
+		  <h2>You are undefined now. Please enter or register.</h2>
+		</div>
+	{% endif %}
+{% endblock %}

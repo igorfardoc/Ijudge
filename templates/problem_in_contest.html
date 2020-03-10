@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="myform2">
+		<h2>Problem "{{problem.name}}"</h2>
+		<table class="table table-bordered table-dark">
+			<tr>
+				<th>Id</th>
+				<th>Time limit</th>
+				<th>File in</th>
+				<th>File out</th>
+				<th>Task</th>
+			</tr>
+			<tr>
+				<td>{{problem.id}}</td>
+				<td>{{problem.time_limit}}</td>
+				<td>{{problem.file_in}}</td>
+				<td>{{problem.file_out}}</td>
+				<td><a href="/download/problem/{{problem.id}}">Download</a></td>
+			</tr>
+		</table>
+		<form action="" method="post" enctype="multipart/form-data" class="myform">
+			{{ form.hidden_tag() }}
+			{{ form.csrf_token }}
+			<p>
+				{{ form.solution_file.label }}<br>
+				{{ form.solution_file(class="form-group") }}<br>
+				{% for error in form.solution_file.errors %}
+					<p class="alert alert-danger" role="alert">
+						{{ error }}
+					</p>
+				{% endfor %}
+			</p>
+			<p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
+		</form>
+		{% if solutions %}
+			<h3>Solutions</h3>
+			<table class="table table-bordered table-dark">
+				<tr>
+					<th>Id</th>
+					<th>Date and time</th>
+					<th>Status</th>
+					<th>Solution file</th>
+				</tr>
+				{% for i in solutions %}
+					<tr>
+						<td>{{i.id}}</td>
+						<td>{{i.time}}</td>
+						<td>{{i.status}}</td>
+						<td><a href="/download/solution/{{i.id}}">Download</a></td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+	</div>
+{% endblock %}
