@@ -53,7 +53,7 @@ if ok:
             res = f.read()
             f.close()
             if res != 'OK':
-                result = res
+                result = res + ', test ' + str(now + 1)
                 ok = False
         os.system('rd /s /q ' + path)
         now += 1
