@@ -58,5 +58,5 @@ if ok:
         os.system('rd /s /q ' + path)
         now += 1
 else:
-    result = 'Error'
+    result = 'Compilation error'
 open('test' + str(solution_id) + '.txt', 'w').write(result)

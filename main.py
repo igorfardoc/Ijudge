@@ -321,7 +321,7 @@ def problem_in_contest(contest_id, problem_id):
                                                Solution.problem_id == problem_id).all()
     solutions_sorted = sorted(solutions, key=lambda x: x.time, reverse=True)
     return render_template('problem_in_contest.html', title='Problem', form=form,
-                           solutions=solutions_sorted, problem=problem)
+                           solutions=solutions_sorted, problem=problem, contest_id=contest_id)
 
 
 @app.route('/download/problem/<int:problem_id>')

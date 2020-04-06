@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+	<p></p>
 	<div class="myform2">
+		<a href="/contest/{{contest_id}}" class="btn btn-dark">To contest</a>
 		<h2>Problem "{{problem.name}}"</h2>
 		<table class="table table-bordered table-dark">
 			<tr>
@@ -31,7 +33,7 @@
 					</p>
 				{% endfor %}
 			</p>
-			<p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
+			<p>{{ form.submit(type="submit", class="btn btn-success") }}</p>
 		</form>
 		{% if solutions %}
 			<h3>Solutions</h3>

@@ -26,7 +26,8 @@ try:
         f.write('Wrong answer')
     else:
         f.write('OK')
-except:
+except Exception as e:
+    print(e)
     f.write('Format error')
 f.close()
 sleep(1)
