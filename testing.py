@@ -4,15 +4,10 @@ import os
 
 
 solution_id = int(sys.argv[1])
-#solution_id = 1
 problem_id = int(sys.argv[2])
-#problem_id = 1
 file_in = sys.argv[3]
-#file_in = 'input.txt'
 file_out = sys.argv[4]
-#file_out = 'output.txt'
 time_limit = int(sys.argv[5])
-#time_limit = 1
 tests = open(os.getcwd() + '\\problems\\' + str(problem_id) + '\\tests_file.txt').read()
 mass = tests.split('\n\n')
 path_ans = os.getcwd() + '\\problems\\' + str(problem_id) + '\\answers_file.txt'
@@ -26,7 +21,7 @@ result = 'Error'
 try:
     f = open(os.getcwd() + '\\' + str(solution_id) + '.exe')
     f.close()
-except:
+except Exception:
     ok = False
 if ok:
     for i in mass:

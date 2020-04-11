@@ -11,7 +11,7 @@ class Solution(SqlAlchemyBase):
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
     problem_id = sqlalchemy.Column(sqlalchemy.Integer,
-                                sqlalchemy.ForeignKey("problems.id"))
+                                   sqlalchemy.ForeignKey("problems.id"))
     status = sqlalchemy.Column(sqlalchemy.String)
     solution_file = sqlalchemy.Column(sqlalchemy.String)
     time = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now())

@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-from flask import Flask, render_template, redirect, request, abort, send_file
+from flask import Flask, render_template, redirect, abort, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
 from data import db_session
 from data.users import User
@@ -25,7 +25,7 @@ def update_solutions():
             res = open('test' + str(i.id) + '.txt').read()
             i.status = res
             os.system('del ' + os.getcwd() + '\\test' + str(i.id) + '.txt')
-        except:
+        except Exception:
             continue
     session.commit()
 
@@ -67,8 +67,10 @@ class ProblemForm(FlaskForm):
 
 class AddContestForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    start_date = DateTimeLocalField('Start date', validators=[InputRequired()], format='%Y-%m-%dT%H:%M')
-    finish_date = DateTimeLocalField('Finish date', validators=[InputRequired()], format='%Y-%m-%dT%H:%M')
+    start_date = DateTimeLocalField('Start date', validators=[InputRequired()],
+                                    format='%Y-%m-%dT%H:%M')
+    finish_date = DateTimeLocalField('Finish date', validators=[InputRequired()],
+                                     format='%Y-%m-%dT%H:%M')
     problems = StringField('Problems id', validators=[DataRequired()])
     submit = SubmitField('Add contest')
 
@@ -120,14 +122,12 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Register',
-                                               form=form,
-                                               message="Passwords do not match")
+            return render_template('register.html', title='Register', form=form,
+                                   message="Passwords do not match")
         session = db_session.create_session()
         if session.query(User).filter(User.email == form.email.data).first():
-            return render_template('register.html', title='Register',
-                                           form=form,
-                                           message="This user already exists")
+            return render_template('register.html', title='Register', form=form,
+                                   message="This user already exists")
         user = User()
         user.name = form.name.data
         user.surname = form.surname.data
@@ -231,10 +231,10 @@ def add_contest():
             contest.problems.append(prob)
         if form.start_date.data > form.finish_date.data:
             return render_template('add_contest.html', title='Add contest', form=form,
-                                   problems=problems, message='Start date can not be later than finish')
+                                   problems=problems, message='End date should be later than start')
         if form.start_date.data < datetime.datetime.now():
             return render_template('add_contest.html', title='Add contest', form=form,
-                                   problems=problems, message='Start date can not be earlier than today')
+                                   problems=problems, message='Start date should be later than now')
         contest.start_date = form.start_date.data
         contest.finish_date = form.finish_date.data
         session.add(contest)

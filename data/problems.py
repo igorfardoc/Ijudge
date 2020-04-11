@@ -4,11 +4,10 @@ from .db_session import SqlAlchemyBase
 
 
 association_table = sqlalchemy.Table('association', SqlAlchemyBase.metadata,
-    sqlalchemy.Column('contests', sqlalchemy.Integer,
-                      sqlalchemy.ForeignKey('contests.id')),
-    sqlalchemy.Column('problems', sqlalchemy.Integer,
-                      sqlalchemy.ForeignKey('problems.id'))
-)
+                                     sqlalchemy.Column('contests', sqlalchemy.Integer,
+                                                       sqlalchemy.ForeignKey('contests.id')),
+                                     sqlalchemy.Column('problems', sqlalchemy.Integer,
+                                                       sqlalchemy.ForeignKey('problems.id')))
 
 
 class Problem(SqlAlchemyBase):
